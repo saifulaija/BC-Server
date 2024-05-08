@@ -25,9 +25,6 @@ const prisma = new PrismaClient();
 //     process.exit(1);
 // });
 
-
-
-
 // import * as bcrypt from 'bcrypt';
 // const seedSuperAdmin = async () => {
 //   try {
@@ -46,8 +43,6 @@ const prisma = new PrismaClient();
 //           throw new Error('Error hashing password');
 //       }
 //   }
-
-  
 
 //     console.log(hashedPassword)
 
@@ -80,10 +75,8 @@ const prisma = new PrismaClient();
 // };
 
 // seedSuperAdmin()
-
-
-
 import * as bcrypt from 'bcrypt';
+
 
 const seedSuperAdmin = async () => {
   try {
@@ -93,31 +86,37 @@ const seedSuperAdmin = async () => {
       },
     });
 
-    const hashedPassword = await hashPassword('111111');
-
     if (isExistSuperAdmin) {
-      console.log('super admin already exists');
+      console.log('Super admin already exists');
       return;
     }
 
-    const superAdminData = await prisma.user.create({
-      data: {
-        email: 'sobujapm87@gmail.com',
-        password: hashedPassword,
-        role: UserRole.SUPER_ADMIN,
-        admin: {
-          create: {
-            name: 'Md.Anisur Rahaman',
-            profilePhoto:"https://i.ibb.co/jyWMXg3/super-Admin.jpg",
-            contactNumber: '01874767969',
-            address: 'Birampur bus stand, Birampur, Dinajpur'
-          },
+    const hashedPassword = await hashPassword('111111');
+
+    const result = await prisma.$transaction(async (tx) => {
+      const user = await tx.user.create({
+        data: {
+          email: 'sobujapm87@gmail.com',
+          password: hashedPassword,
+          role: UserRole.SUPER_ADMIN,
         },
-      },
+      });
+
+      const admin = await tx.admin.create({
+        data: {
+          email: 'sobujapm87@gmail.com',
+          name: 'Md. Anisur Rahaman',
+          profilePhoto: 'https://i.ibb.co/jyWMXg3/super-Admin.jpg',
+          contactNumber: '01874767969',
+          address: 'Birampur bus stand, Birampur, Dinajpur',
+          userId: user.id,
+        },
+      });
+
+      console.log('Super admin created successfully');
     });
-    console.log('super admin created successfully', superAdminData);
-  } catch (err: any) {
-    console.log(err);
+  } catch (error) {
+    console.error('Error seeding super admin:', error);
   } finally {
     await prisma.$disconnect();
   }
@@ -125,7 +124,7 @@ const seedSuperAdmin = async () => {
 
 const hashPassword = async (password: string): Promise<string> => {
   try {
-    const hashedPassword: string = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     return hashedPassword;
   } catch (error) {
     throw new Error('Error hashing password');
@@ -133,4 +132,3 @@ const hashPassword = async (password: string): Promise<string> => {
 };
 
 seedSuperAdmin();
-

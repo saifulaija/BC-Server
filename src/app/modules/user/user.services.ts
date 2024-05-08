@@ -73,7 +73,7 @@ const createAdmin = async (req: Request) => {
       },
     });
     const newAdmin = await transactionClient.admin.create({
-      data: req.body.admin,
+      data:{ ...req.body.admin,userId:newUser.id},
     });
 
     console.log(newAdmin,'data-------------------------')

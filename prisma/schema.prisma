@@ -21,9 +21,9 @@ model User {
   updatedAt          DateTime    @updatedAt
   doctor             Doctor?
   patient            Patient?
-  admin              Admin?
   subscriber         Subscriber?
   employee           Employee?
+  admin              Admin?
 
   @@map("users")
 }
@@ -36,9 +36,10 @@ model Subscriber {
   contactNumber String
   address       String?
   isDeleted     Boolean  @default(false)
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id])
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  user          User     @relation(references: [email], fields: [email])
 
   @@map("subscribers")
 }
@@ -62,10 +63,12 @@ model Employee {
   bankAccountNumber    String?
   bankName             String?
   isDeleted            Boolean        @default(false)
+  userId               String         @unique
+  user                 User           @relation(fields: [userId], references: [id])
   createdAt            DateTime       @default(now())
   updatedAt            DateTime       @updatedAt
-  user                 User           @relation(references: [email], fields: [email])
-  branch               Branch?
+
+  branch Branch?
 
   @@map("employees")
 }
@@ -194,10 +197,12 @@ model Admin {
   gender        Gender?
   maritalStatus MaritalStatus?
   qualification String?
-  isDeleted Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user User @relation(references: [email], fields: [email])
+  isDeleted     Boolean        @default(false)
+  userId        String         @unique
+  user          User           @relation(fields: [userId], references: [id])
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
   @@map("admins")
 }
 
