@@ -1,0 +1,195 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\.d7d704b579a30c708013005edfe2f3d7c02a054f-audit.json",
+    "files": [
+        {
+            "date": 1714798174879,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-04-05-10-success.log",
+            "hash": "dd36726666cd911e4dedf005a8365fb84816904638030efe744633236b3d184d"
+        },
+        {
+            "date": 1714806431030,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-04-05-13-success.log",
+            "hash": "cd33388467d06d698581dd5c7ce1a5c3cecfbb9b8bbfe6bf209e77545e413870"
+        },
+        {
+            "date": 1714818787862,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-04-05-16-success.log",
+            "hash": "13110a7a75be5f7bcc6b69fce2d22a5b8b060b330425192a2cefae884a66afef"
+        },
+        {
+            "date": 1714821339253,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-04-05-17-success.log",
+            "hash": "6975e35c2c6048c992c5e4bfa48d5cd828872299e9e3a7e9bca65172d9585114"
+        },
+        {
+            "date": 1714841924444,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-04-05-22-success.log",
+            "hash": "025f04239fcb9e0ce93a49ca43a567a28825eccc2d03dd3d1ee04b40aabb8494"
+        },
+        {
+            "date": 1714842088790,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-04-05-23-success.log",
+            "hash": "e5a2b913096645c4e79877a3fe85f4bce564f02d9fbb06fc71de018b883c2943"
+        },
+        {
+            "date": 1714845871940,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-05-05-00-success.log",
+            "hash": "10bb572d91b8c6cc871940b4af008a1e646611f2319a33e1bb1fd374723e7686"
+        },
+        {
+            "date": 1714883120010,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-05-05-10-success.log",
+            "hash": "9912c349df9b06d1f9b53d14441c3cb827e2f5fd37ceb8c56c72957c70da02b1"
+        },
+        {
+            "date": 1714891646351,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-05-05-12-success.log",
+            "hash": "2a258073efdc6f8c9f812ec2fe5e96b321635b9e9a2ed46212e4ce634a8564e5"
+        },
+        {
+            "date": 1714908801863,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-05-05-17-success.log",
+            "hash": "8e17bdb30f91a57b57ab9c492fe002e6be7835c0921617a5c068f367acf288ed"
+        },
+        {
+            "date": 1714969198420,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-06-05-10-success.log",
+            "hash": "67c03513b061b9702a0241b1110a55162d4efa8189703d4177a3447e1a1fcb94"
+        },
+        {
+            "date": 1714995014981,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-06-05-17-success.log",
+            "hash": "8febb827059751d6e533ec40b525d884c64e15aec920dc91b037c04698d7fb32"
+        },
+        {
+            "date": 1715001354106,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-06-05-19-success.log",
+            "hash": "32cf795d53d69889dc94d9868aa2c379a0fd8e5c0ce86f9cc3af6551366b0955"
+        },
+        {
+            "date": 1715004021972,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-06-05-20-success.log",
+            "hash": "e5c6377a3c8d92d3ce123beede2e9364fada6ae6c5f8aa4ed6f8a1250e9eb312"
+        },
+        {
+            "date": 1715015383438,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-06-05-23-success.log",
+            "hash": "811941b0ee5049cd4d5edef4a42b4b83cb93f2426f590ce581d7da22ee5e81d9"
+        },
+        {
+            "date": 1715018777158,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-00-success.log",
+            "hash": "630406a136af58c9fc096680d2bbc0344b7d1ed645b902796bec04a61bf4302c"
+        },
+        {
+            "date": 1715022783263,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-01-success.log",
+            "hash": "c09c7bada128b26468b87e5d4078dd5ffb70d8de7ae4b29c0ef17c7a937086ad"
+        },
+        {
+            "date": 1715055289465,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-10-success.log",
+            "hash": "81853d483c3f316b5792a25e0291efbc486b80bcee3d967d86fd97266a4b1e70"
+        },
+        {
+            "date": 1715060670828,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-11-success.log",
+            "hash": "9125b812e42781238c46a4fff203baa855ce3848973ea0b617617792bb6dc7e9"
+        },
+        {
+            "date": 1715062000387,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-12-success.log",
+            "hash": "d11f3cd0c5feb70c74eb8ca062be884a2dfabba851cf0c488f7788bea3388ea9"
+        },
+        {
+            "date": 1715065257299,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-13-success.log",
+            "hash": "b7352e5785f3b42f0e99fad86c65ed06d11be5d7d118b9647b3a8cc73f35277f"
+        },
+        {
+            "date": 1715070647356,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-14-success.log",
+            "hash": "e9c845ed5c2aa92d6f7bb21f9262ccc1ae05647a5b7bcd600ac6902a11e0da04"
+        },
+        {
+            "date": 1715074889279,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-15-success.log",
+            "hash": "1aa14ac2d6af891555ad81667ec6d8bb6e73ea4e80cab892353ed76cb04164f3"
+        },
+        {
+            "date": 1715077383804,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-16-success.log",
+            "hash": "bd9e37399a8595af5ecc0bbf78bb68a8e386264683582fd97b0eaca6187aebf3"
+        },
+        {
+            "date": 1715082965722,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-17-success.log",
+            "hash": "c8641e2a161de8aa13dc3b062391aa1d1299ad4238ddf2fcefed27fe35e376bd"
+        },
+        {
+            "date": 1715084631792,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-18-success.log",
+            "hash": "4d6753cd043ddcdd46b88fa20c0ac2269e241163e4b7f4b0b674ece963b49557"
+        },
+        {
+            "date": 1715090610772,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-20-success.log",
+            "hash": "fc41242080e26091c64916b1c7c5695523008030d2fac455be9d149bbad61795"
+        },
+        {
+            "date": 1715099716832,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-22-success.log",
+            "hash": "dc83a70ac9f437a05f48ad6adf5b3a2d8781f07b684805c35be8feabd5beebc1"
+        },
+        {
+            "date": 1715102210787,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-07-05-23-success.log",
+            "hash": "d5deaebf1662380d5fc6f86d5eb2592981a444948272fac39fca1a5a053b2f52"
+        },
+        {
+            "date": 1715106629848,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-08-05-00-success.log",
+            "hash": "261f1f9309f6221e17f9ae292c70376770917878a6e9fd11cec31f3d9a4fc544"
+        },
+        {
+            "date": 1715108888834,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-08-05-01-success.log",
+            "hash": "1211edd442fd4431da9566c8810ca19a336fc02717716c223259c1608f1d368d"
+        },
+        {
+            "date": 1715149233960,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-08-05-12-success.log",
+            "hash": "577fc5043acd9c2e433072a8e831477020f0770febbaf23eb1b3284baa5c042a"
+        },
+        {
+            "date": 1715151616319,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-08-05-13-success.log",
+            "hash": "306b8f682e4303ab1f7d61d938e01690992b4f508f87b36917613c9908a3cf23"
+        },
+        {
+            "date": 1715155368312,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-08-05-14-success.log",
+            "hash": "caee5d6de192c6923f80d23c2e89b26ae1314be4bf589a5891700ddf6a8f1419"
+        },
+        {
+            "date": 1715164347662,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-08-05-16-success.log",
+            "hash": "7b071b774e6c17ea57299977976d125c232c02a4e2bc257dc86dc6e2f909e389"
+        },
+        {
+            "date": 1715166035127,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-08-05-17-success.log",
+            "hash": "4057a044d4771984aac8e80e43b28fcbad4079150b2b5613c1eb8c921aad206b"
+        },
+        {
+            "date": 1715171826935,
+            "name": "I:\\Client Project\\BONDHU CORPORATION\\BondhuCorporation-Server\\logs\\winston\\successes\\phu-2024-08-05-18-success.log",
+            "hash": "9d0ce688cce16d4f5ca8e9ca4f45ea1852f4db863fec0a3fd717b10a33b92673"
+        }
+    ],
+    "hashType": "sha256"
+}
