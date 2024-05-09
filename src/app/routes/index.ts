@@ -12,6 +12,7 @@ import { paymentRoutes } from '../modules/payment/payment.routes';
 import { PrescriptionsRoutes } from '../modules/prescription/prescription.route';
 import { ReviewRoutes } from '../modules/review/review.route';
 import { MetaRoutes } from '../modules/meta/meta.routes';
+import { EmployeeRoutes } from '../modules/employee/employee.route';
 
 const router = express.Router();
 
@@ -26,8 +27,8 @@ const moduleRoutes = [
     route: userRoutes,
   },
   {
-    path: '/doctor',
-    route: DoctorRoutes,
+    path: '/employee',
+    route: EmployeeRoutes,
   },
   {
     path: '/admin',

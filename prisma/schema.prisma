@@ -45,29 +45,29 @@ model Subscriber {
 }
 
 model Employee {
-  id                   String         @id @default(uuid())
-  email                String         @unique
-  name                 String
-  dob                  String
-  gender               Gender
-  maritalStatus        MaritalStatus?
-  profilePhoto         String?
-  contactNumber        String
-  emergencyContactName String?
-  address              String?
-  designation          String
-  experience           Int            @default(0)
-  qualification        String
-  joing_date           String?
-  salary               Int            @default(0)
-  resigning_date       String?
-  bankAccountNumber    String?
-  bankName             String?
-  isDeleted            Boolean        @default(false)
-  userId               String         @unique
-  user                 User           @relation(fields: [userId], references: [id])
-  createdAt            DateTime       @default(now())
-  updatedAt            DateTime       @updatedAt
+  id                     String         @id @default(uuid())
+  email                  String         @unique
+  name                   String
+  dob                    String
+  gender                 Gender
+  maritalStatus          MaritalStatus?
+  profilePhoto           String?
+  contactNumber          String
+  emergencyContactNumber String?
+  address                String?
+  designation            String
+  experience             Int            @default(0)
+  qualification          String
+  joing_date             String?
+  salary                 Int            @default(0)
+  resigning_date         String?
+  bankAccountNumber      String?
+  bankName               String?
+  isDeleted              Boolean        @default(false)
+  userId                 String         @unique
+  user                   User           @relation(fields: [userId], references: [id])
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
 
   branch   Branch?
   purchase Purchase[]
