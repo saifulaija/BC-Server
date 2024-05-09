@@ -84,6 +84,43 @@ const createAdmin = async (req: Request) => {
   return result;
 };
 
+
+
+const createEmployee = async (req: Request) => {
+  const file = req.file as IUploadFile;
+
+  console.log(req.body.employee,'employee')
+
+
+  console.log(file,'--------------------------------------------------')
+  
+
+  if (file) {
+    const uploadedProfileImage = await FileUploadHelper.uploadToCloudinary(file);
+    req.body.employee.profilePhoto = uploadedProfileImage?.secure_url;
+  }
+
+  const hashPassword = await hashedPassword(req.body.password);
+  const result = await prisma.$transaction(async transactionClient => {
+    const newUser = await transactionClient.user.create({
+      data: {
+        email: req.body.employee.email,
+        password: hashPassword,
+        role: req.body.employee.designation,
+      },
+    });
+    const newEmployee = await transactionClient.employee.create({
+      data:{ ...req.body.employee,userId:newUser.id},
+    });
+
+ console.log(newEmployee,'employe---------------------')
+
+    return newEmployee;
+  });
+
+  return result;
+};
+
 // const createAdmin = async (req: Request): Promise<Admin> => {
 //   const file = req.file as IUploadFile;
 //   console.log(file,'file----')
@@ -359,4 +396,5 @@ export const UserServices = {
   getMyProfile,
   updateMyProfile,
   createSubscriber,
+  createEmployee
 };

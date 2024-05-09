@@ -1,4 +1,4 @@
-import { Admin, Prisma, UserStatus } from '@prisma/client';
+import { Admin, Prisma, User, UserStatus } from '@prisma/client';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { IAdminFilterRequest } from './admin.interface';
@@ -56,6 +56,9 @@ const getAllFromDB = async (
         : {
             createdAt: 'desc',
           },
+    include: {
+      user: true,
+    },
   });
   const total = await prisma.admin.count({
     where: whereConditions,
@@ -84,7 +87,7 @@ const getByIdFromDB = async (id: string): Promise<Admin | null> => {
 const updateIntoDB = async (
   id: string,
   payload: Partial<Admin>,
-): Promise<Admin | null> => {
+): Promise<Admin | User> => {
   const admin = await prisma.admin.findUnique({
     where: {
       id,
@@ -94,14 +97,37 @@ const updateIntoDB = async (
   if (!admin) {
     throw new ApiError(httpStatus.NOT_FOUND, 'This admin does not exist');
   }
-  const result = await prisma.admin.update({
-    where: {
-      id,
-      isDeleted: false,
-    },
-    data: payload,
+  // const result = await prisma.admin.update({
+  //   where: {
+  //     id,
+  //     isDeleted: false,
+  //   },
+  //   data: payload,
+  // });
+
+  const result = await prisma.$transaction(async tx => {
+    const updateAdmin = await tx.admin.update({
+      where: {
+        id,
+        isDeleted: false,
+      },
+      data: payload,
+    });
+
+    if(payload.email){
+      await tx.user.update({
+        where:{
+          id:updateAdmin.userId
+        },
+        data:{
+          email:payload.email
+        }
+      })
+    }
+    return updateAdmin
   });
-  return result;
+
+  return result
 };
 
 const deleteFromDB = async (id: string): Promise<Admin> => {

@@ -44,6 +44,15 @@ router.post(
     return UserController.createAdmin(req, res, next);
   },
 );
+router.post(
+  '/create-employee',
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  FileUploadHelper.upload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = UserValidation.createEmployee.parse(JSON.parse(req.body.data));
+    return UserController.createEmployee(req, res, next);
+  },
+);
 
 router.post(
   '/create-patient',

@@ -48,17 +48,18 @@ model Employee {
   id                   String         @id @default(uuid())
   email                String         @unique
   name                 String
-  date_of_birth        String
+  dob                  String
   gender               Gender
-  meritalStatus        MaritalStatus?
+  maritalStatus        MaritalStatus?
   profilePhoto         String?
   contactNumber        String
   emergencyContactName String?
   address              String?
+  designation          String
   experience           Int            @default(0)
   qualification        String
-  salary               Int
   joing_date           String?
+  salary               Int            @default(0)
   resigning_date       String?
   bankAccountNumber    String?
   bankName             String?
@@ -68,7 +69,8 @@ model Employee {
   createdAt            DateTime       @default(now())
   updatedAt            DateTime       @updatedAt
 
-  branch Branch?
+  branch   Branch?
+  purchase Purchase[]
 
   @@map("employees")
 }
@@ -78,6 +80,103 @@ model Branch {
   branchName BranchName
   managerId  String     @unique
   manager    Employee   @relation(fields: [managerId], references: [id])
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@map("branches")
+}
+
+model Customer {
+  id            String     @id @default(uuid())
+  name          String
+  contactNumber String
+  address       String
+  customerId    String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  Purchase      Purchase[]
+
+  @@map("customesr")
+}
+
+model Paddy {
+  id            String          @id @default(uuid())
+  name          String
+  category      PaddyCategory
+  price         Int
+  quantity      Int
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  purchase_Item Purchase_Item[]
+
+  @@map("paddies")
+}
+
+model Store {
+  id            String     @id @default(uuid())
+  name          String
+  location      String
+  contactNumber String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  mainStoreId   String
+  mainStore     Main_Store @relation(fields: [mainStoreId], references: [id])
+  purchase      Purchase[]
+
+  @@map("stores")
+}
+
+model Purchase {
+  id          String   @id @default(uuid())
+  emp_id      String
+  employee    Employee @relation(fields: [emp_id], references: [id])
+  cus_id      String
+  customer    Customer @relation(fields: [cus_id], references: [id])
+  storeId     String
+  store       Store    @relation(fields: [storeId], references: [id])
+  total_price Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  purchase_Item Purchase_Item[]
+
+  @@map("purchases")
+}
+
+model Purchase_Item {
+  id         String   @id @default(uuid())
+  purchaseId String
+  purchase   Purchase @relation(fields: [purchaseId], references: [id])
+  paddyId    String
+  paddy      Paddy    @relation(fields: [paddyId], references: [id])
+  quantity   Int
+  unit_price Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("purchase_items")
+}
+
+model Category_Stock {
+  id             String @id @default(uuid())
+  total_quantity Int
+
+  @@map("category_stocks")
+}
+
+model Store_Stock_Total {
+  id             String @id @default(uuid())
+  total_quantity Int
+  total_price    Float
+
+  @@map("store_stock_totals")
+}
+
+model Main_Store {
+  id   String @id @default(uuid())
+  name String
+
+  stores Store[]
 }
 
 model Doctor {
@@ -319,7 +418,9 @@ enum UserRole {
   PATIENT
   SUPER_ADMIN
   SUBSCRIBER
-  sells_manager
+  HEAD_OF_SELLS
+  SELLS_MANAGER
+  STORE_MANAGER
 }
 
 enum UserStatus {
@@ -366,4 +467,10 @@ enum BranchName {
   HRDEPARTMENT
   PURCHASEDEPARTMENT
   SELLDEPERTMENT
+}
+
+enum PaddyCategory {
+  Basmoti
+  Aman
+  Boro
 }

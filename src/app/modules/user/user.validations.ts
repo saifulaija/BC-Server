@@ -30,6 +30,25 @@ const createNewAdmin = z.object({
     contactNumber: z.string().optional(),
   }),
 });
+const createEmployee = z.object({
+  password: z.string(),
+  employee: z.object({
+    name: z.string(),
+    email: z.string(),
+    address: z.string(),
+    gender: z.enum(['MALE', 'FEMALE']),
+    qualification: z.string(),
+    maritalStatus: z.enum(['MARRIED', 'UNMARRIED']),
+   
+    designation: z.enum([
+      'HEAD_OF_SELLS',
+      'SELLS_MANAGER',
+      'STORE_MANAGER',
+    ]),
+    contactNumber: z.string().optional(),
+    dob: z.string(),
+  }),
+});
 
 const createPatient = z.object({
   password: z.string(),
@@ -69,4 +88,5 @@ export const UserValidation = {
   createPatient,
   updateStatus,
   createSubscriber,
+  createEmployee
 };

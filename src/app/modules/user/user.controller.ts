@@ -29,6 +29,17 @@ const createAdmin = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const createEmployee = catchAsync(async (req: Request, res: Response) => {
+
+  console.log(req.file,'from controller----------------')
+  const result = await UserServices.createEmployee(req);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Employee created successfully!',
+    data: result,
+  });
+});
 
 const createPatient = catchAsync(async (req: Request, res: Response) => {
   //const { patient, ...userData } = req.body;
@@ -110,5 +121,6 @@ export const UserController = {
   getAllUser,
   getMyProfile,
   updateMyProfile,
-  createSubscriber
+  createSubscriber, 
+  createEmployee
 };
