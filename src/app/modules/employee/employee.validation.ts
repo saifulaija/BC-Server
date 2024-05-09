@@ -1,59 +1,31 @@
 import { z } from 'zod';
 
-const create = z.object({
-  body: z.object({
-    email: z.string({
-      required_error: 'Email is required',
-    }),
-    name: z.string({
-      required_error: 'Name is required',
-    }),
-    profilePhoto: z.string({
-      required_error: 'Profile Photo is required',
-    }),
-    contactNumber: z.string({
-      required_error: 'Contact Number is required',
-    }),
-    dob: z.string({
-      required_error: 'Date of birth  is required',
-    }),
-    experience: z.number({
-      required_error: 'Experience is required',
-    }),
-    gender: z.string({
-      required_error: 'Gender is required',
-    }),
-    designation: z.number({
-      required_error: 'Blood group is required',
-    }),
-    qualification: z.string({
-      required_error: 'Apointment Fee is required',
-    }),
-    currentWorkingPlace: z.string({
-      required_error: 'Current Working Place is required',
-    }),
-    designation: z.string({
-      required_error: 'Designation is required',
-    }),
-  }),
-});
 
-const update = z.object({
+
+const updateEmployee = z.object({
   body: z.object({
-    name: z.string().optional(),
+    email: z.string().email().optional(),
+    name: z.string(),
+    gender: z.enum(['MALE', 'FEMALE']).optional(),
+    maritalStatus: z.enum(['MARRIED', 'UNMARRIED']).optional(),
     profilePhoto: z.string().optional(),
     contactNumber: z.string().optional(),
-    registrationNumber: z.string().optional(),
+    emergencyContactNumber: z.string().nullable().optional(),
+    address: z.string().optional(),
+    designation: z.enum(['HEAD_OF_SELLS', 'SELLS_MANAGER', 'STORE_MANAGER']).optional(),
     experience: z.number().optional(),
-    gender: z.string().optional(),
-    apointmentFee: z.number().optional(),
     qualification: z.string().optional(),
-    currentWorkingPlace: z.string().optional(),
-    designation: z.string().optional(),
+    joining_date: z.string().nullable().optional(),
+    salary: z.number().optional(),
+    resigning_date: z.string().nullable().optional(),
+    bankAccountNumber: z.string().nullable().optional(),
+    bankName: z.string().nullable().optional(),
   }),
 });
 
-export const DoctorValidation = {
-  create,
-  update,
+
+
+export const EmployeeValidation = {
+ updateEmployee,
+
 };

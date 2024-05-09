@@ -1,4 +1,4 @@
-import { Doctor, Employee, Prisma, Specialties, UserStatus } from '@prisma/client';
+import { Doctor, Employee, Prisma, Specialties, User, UserStatus } from '@prisma/client';
 import prisma from '../../../shared/prisma';
 
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -8,7 +8,7 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import ApiError from '../../../errors/ApiError';
 import httpStatus from 'http-status';
 import { asyncForEach } from '../../../shared/utils';
-import { IEmployeeFilterRequest } from './employee.interface';
+import { IEmployeeFilterRequest, IEmployeeUpdate } from './employee.interface';
 import { employeeFilterableFields, employeeSearchableFields } from './employee.constants';
 
 const insertIntoDB = async (data: Doctor): Promise<Doctor> => {
@@ -168,113 +168,105 @@ const getAllFromDB = async (
   };
 };
 
-const getByIdFromDB = async (id: string): Promise<Doctor | null> => {
+const getByIdFromDB = async (id: string): Promise<Employee | null> => {
   console.log(id);
-  const result = await prisma.doctor.findUnique({
+  const result = await prisma.employee.findUniqueOrThrow({
     where: {
       id,
       isDeleted: false,
     },
-    include: {
-      doctorSpecialties: {
-        include: {
-          specialties: true,
-        },
-      },
-      schedules: true,
-      review: true,
-    },
+    
   });
   console.log(result);
   return result;
 };
 
+// const updateIntoDB = async (
+//   id: string,
+//   payload: Partial<IEmployeeUpdate>,
+// ): Promise<Doctor | null> => {
+  
+//   await prisma.$transaction(async transactionClient => {
+//     const result = await transactionClient.employee.update({
+//       where: {
+//         id,
+//       },
+//       data: payload,
+//     });
+   
+    
+
+//     return result;
+//   });
+
+//   const responseData = await prisma.doctor.findUnique({
+//     where: {
+//       id,
+//     },
+//     include: {
+//       doctorSpecialties: {
+//         include: {
+//           specialties: true,
+//         },
+//       },
+//     },
+//   });
+//   return responseData;
+// };
+
+
+
+
 const updateIntoDB = async (
   id: string,
-  payload: Partial<IDoctorUpdate>,
-): Promise<Doctor | null> => {
-  const { specialties, ...doctorData } = payload;
-  await prisma.$transaction(async transactionClient => {
-    const result = await transactionClient.doctor.update({
-      where: {
-        id,
-      },
-      data: doctorData,
-    });
-    console.log(doctorData);
-    if (!result) {
-      throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to update Doctor');
-    }
-    if (specialties && specialties.length > 0) {
-      const deleteSpecialities = specialties.filter(
-        speciality => speciality.specialtiesId && speciality.isDeleted,
-      );
-
-      const newSpecialities = specialties.filter(
-        speciality => speciality.specialtiesId && !speciality.isDeleted,
-      );
-
-      await asyncForEach(
-        deleteSpecialities,
-        async (deleteDoctorSpeciality: ISpecialties) => {
-          await transactionClient.doctorSpecialties.deleteMany({
-            where: {
-              AND: [
-                {
-                  doctorId: id,
-                },
-                {
-                  specialtiesId: deleteDoctorSpeciality.specialtiesId,
-                },
-              ],
-            },
-          });
-        },
-      );
-      await asyncForEach(
-        newSpecialities,
-        async (insertDoctorSpeciality: ISpecialties) => {
-          //@ needed for already added specialties
-          const existingSpecialties = await prisma.doctorSpecialties.findFirst({
-            where: {
-              specialtiesId: insertDoctorSpeciality.specialtiesId,
-              doctorId: id,
-            },
-          });
-
-          if (!existingSpecialties) {
-            await transactionClient.doctorSpecialties.create({
-              data: {
-                doctorId: id,
-                specialtiesId: insertDoctorSpeciality.specialtiesId,
-              },
-            });
-          }
-        },
-      );
-    }
-
-    return result;
-  });
-
-  const responseData = await prisma.doctor.findUnique({
+  payload: Partial<Employee>,
+): Promise<Employee | User> => {
+  const employee = await prisma.employee.findUnique({
     where: {
       id,
-    },
-    include: {
-      doctorSpecialties: {
-        include: {
-          specialties: true,
-        },
-      },
+      isDeleted: false,
     },
   });
-  return responseData;
+  if (!employee) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'This employee does not exist');
+  }
+  // const result = await prisma.admin.update({
+  //   where: {
+  //     id,
+  //     isDeleted: false,
+  //   },
+  //   data: payload,
+  // });
+
+  const result = await prisma.$transaction(async tx => {
+    const updateAdmin = await tx.employee.update({
+      where: {
+        id,
+        isDeleted: false,
+      },
+      data: payload,
+    });
+
+    if(payload.email){
+      await tx.user.update({
+        where:{
+          id:updateAdmin.userId
+        },
+        data:{
+          email:payload.email
+        }
+      })
+    }
+    return updateAdmin
+  });
+
+  return result
 };
 
-const deleteFromDB = async (id: string): Promise<Doctor> => {
+
+const deleteFromDB = async (id: string): Promise<Employee> => {
   return await prisma.$transaction(async transactionClient => {
-    const deleteDoctor = await transactionClient.doctor.delete({
+    const deleteEmployee = await transactionClient.employee.delete({
       where: {
         id,
       },
@@ -282,17 +274,17 @@ const deleteFromDB = async (id: string): Promise<Doctor> => {
 
     await transactionClient.user.delete({
       where: {
-        email: deleteDoctor.email,
+        email: deleteEmployee.email,
       },
     });
 
-    return deleteDoctor;
+    return deleteEmployee;
   });
 };
 
-const softDelete = async (id: string): Promise<Doctor> => {
+const softDelete = async (id: string): Promise<Employee> => {
   return await prisma.$transaction(async transactionClient => {
-    const deleteDoctor = await transactionClient.doctor.update({
+    const deleteEmployee = await transactionClient.employee.update({
       where: { id },
       data: {
         isDeleted: true,
@@ -301,14 +293,14 @@ const softDelete = async (id: string): Promise<Doctor> => {
 
     await transactionClient.user.update({
       where: {
-        email: deleteDoctor.email,
+        email: deleteEmployee.email,
       },
       data: {
         status: UserStatus.DELETED,
       },
     });
 
-    return deleteDoctor;
+    return deleteEmployee;
   });
 };
 

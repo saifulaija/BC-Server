@@ -47,6 +47,12 @@ const createEmployee = z.object({
     ]),
     contactNumber: z.string().optional(),
     dob: z.string(),
+    joing_date:z.string(),
+    salary:z.number(),
+    emergencyContactNumber:z.string().optional(),
+    experience:z.number(),
+    bankName:z.string(),
+    bankAccountNumber:z.string()
   }),
 });
 

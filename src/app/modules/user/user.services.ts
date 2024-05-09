@@ -344,8 +344,8 @@ const getMyProfile = async (authUser: any) => {
 const updateMyProfile = async (authUser: any, req: Request) => {
   const userData = await prisma.user.findUnique({
     where: {
-      id: authUser.userId,
-      status: UserStatus.ACTIVE,
+      id: authUser?.userId,
+      status: UserStatus?.ACTIVE,
     },
   });
 
@@ -362,7 +362,7 @@ const updateMyProfile = async (authUser: any, req: Request) => {
   }
 
   let profileData;
-  if (userData?.role === UserRole.ADMIN) {
+  if (userData?.role === UserRole.ADMIN || userData?.role === UserRole.SUPER_ADMIN) {
     profileData = await prisma.admin.update({
       where: {
         email: userData.email,

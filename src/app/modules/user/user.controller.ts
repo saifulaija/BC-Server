@@ -89,6 +89,7 @@ const getAllUser = catchAsync(async (req: Request, res: Response) => {
 
 const getMyProfile = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
+  console.log(user)
 
   const result = await UserServices.getMyProfile(user);
 
@@ -108,7 +109,7 @@ const updateMyProfile = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Profile data fetched!',
+    message: 'Profile updated fetched!',
     data: result
   });
 });

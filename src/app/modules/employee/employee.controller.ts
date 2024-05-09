@@ -33,11 +33,11 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
 
 const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await DoctorService.getByIdFromDB(id);
+  const result = await EmployeeService.getByIdFromDB(id);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Doctor retrieval successfully',
+    message: 'Employee retrieval successfully',
     data: result,
   });
 });
@@ -46,33 +46,33 @@ const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const payload = req.body;
   console.log(payload);
-  const { ...doctorData } = payload;
-  const result = await DoctorService.updateIntoDB(id, doctorData);
+ 
+  const result = await EmployeeService.updateIntoDB(id, payload);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Doctor updated successfully',
+    message: 'Employee updated successfully',
     data: result,
   });
 });
 
 const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await DoctorService.deleteFromDB(id);
+  const result = await EmployeeService.deleteFromDB(id);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Doctor deleted successfully',
+    message: 'Employee deleted successfully',
     data: result,
   });
 });
 const softDelete = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await DoctorService.softDelete(id);
+  const result = await EmployeeService.softDelete(id);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Doctor soft deleted successfully',
+    message: 'Employee soft deleted successfully',
     data: result,
   });
 });
